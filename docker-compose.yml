@@ -1,0 +1,21 @@
+version: '3'
+
+
+networks:
+  default:
+    driver: bridge
+services:
+  imgproxy:
+    stdin_open: true
+    tty: true  
+    restart: unless-stopped
+    image: darthsim/imgproxy:${IMGPROXY_TAG:-latest}
+    container_name: imgproxy_app
+    ports:
+     - "8080:8080"
+    expose:
+      - 8080
+    environment:
+      IMGPROXY_KEY: "dca562cbe2b96cc3bd79162fd5b0122f7394e3593ef8a1447da8959448fa4075"
+      IMGPROXY_SALT: "cd4842017110a9412ddaa36d13dce193edd76a2ed4f46e91855570003468b148"
+
